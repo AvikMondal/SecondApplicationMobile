@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <meta http-equiv="Content-Security-Policy"
+          content="default-src *;
+               script-src 'self' 'unsafe-inline' 'unsafe-eval'
+                           127.0.0.1:*
+                           http://*.google.com
+                           http://*.gstatic.com
+                           http://*.googleapis.com
+                           http://*.firebaseio.com
+                           https://*.google.com
+                           https://*.gstatic.com
+                           https://*.googleapis.com
+                           https://*.firebaseio.com
+                           ;
+               style-src  'self' 'unsafe-inline'
+                          127.0.0.1
+                           http://*.google.com
+                           http://*.gstatic.com
+                           http://*.googleapis.com
+                           http://*.firebaseio.com
+                           https://*.google.com
+                           https://*.gstatic.com
+                           https://*.googleapis.com
+                           https://*.firebaseio.com
+">
+        <title>Check Incoming Number</title>
+        <link rel="stylesheet" href="jquerymobile/jquery.mobile-1.4.5.min.css" />
+        <script src="jquerymobile/jquery-1.11.1.min.js"></script>
+        <script src="jquerymobile/jquery.mobile-1.4.5.min.js"></script>
+    <script>
+// PHONE LISTNER PLUGIN CODE
+/*function onDeviceReady()
+{
+    alert("Ready");
+	PhoneListener.start(onPhoneStateChanged,onError);
+	// or...
+	// PhoneListener.stop(onSuccess,onError);
+}
+
+function onPhoneStateChanged(phoneState) 
+{
+	switch (phoneState) {
+		case "RINGING":
+			alert("Phone is ringing.");
+			break;
+		case "OFFHOOK":
+			alert("Phone is off the hook.");
+			break;
+		case "IDLE":
+			alert("Phone has returned to the idle state.");
+			break;
+		default:
+			// no default...
+	}
+}
+
+function onError(error) {
+    alert("Error");
+	// do something...
+}
+function onSuccess() {
+    alert("Success");
+	// do something else...
+}*/
+        
+        function getNumber()
+        {
+            document.getElementById('MyNo').innerHTML +="9547048656";
+            alert("Hi");
+            plugins.PhoneStateChangeListener.start(function (state, number){
+                alert("Hi inside");
+                if(state == "RINGING")
+                    {
+                       document.getElementById('MyNo').innerHTML ="RINGING"; 
+                    }
+                if(state == "IDLE")
+                    {
+                       document.getElementById('MyNo').innerHTML ="IDLE"; 
+                    }
+                if(state == "OFFHOOK")
+                    {
+                       document.getElementById('MyNo').innerHTML ="OFFHOOK"; 
+                    }
+                if(state == "NONE")
+                    {
+                       document.getElementById('MyNo').innerHTML ="NONE"; 
+                    }
+                // do stuff with the state
+                // do stuff with the number (when state === RINGING);
+            });
+            
+            alert("Hi2");
+            
+        }
+        
+    </script>
+    <style>
+        
+            #AppFooter{
+                
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+            
+            #mapCanvas{
+                
+                height: 200px;
+                width: 100%;
+            }
+            
+            #btnPlay{
+                
+                height: 40px;
+                width: 30%;
+                display: inline
+                
+            }
+              #btnPause{
+                
+                height: 40px;
+                width: 30%;
+                display: inline
+                
+            }
+              #btnStop{
+                
+                height: 40px;
+                width: 30%;
+                display: inline
+                
+            }
+            
+        </style>
+</head>
+
+<body>
+   <div data-role="page">
+        <div data-role="header">
+        <h3>Get Number </h3>
+        </div><!-- header -->
+        <div data-role="main" calss="ui-content">    
+            <script type="text/javascript" src="cordova.js"></script>
+            <script type="text/javascript" src="plugins.PhoneStateChangeListener.js"></script>
+        <label id='MyNo'>My current Number Is : </label>
+        <br><br>
+        <button id='GetIncomingNumner' onclick="getNumber()">Get Incoming Numner</button>
+          
+        </div> <!-- Main -->
+        <div data-role="footer" id="AppFooter">
+            <h2>This is my second app</h2>
+            </div> <!-- footer -->
+        </div> <!-- Page -->
+</body>
+
+</html>
